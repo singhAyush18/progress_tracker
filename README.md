@@ -27,7 +27,7 @@ A full-stack web application to help you track your study sessions, coding pract
 
 1. **Clone the repository:**
    ```sh
-   git clone https://github.com/Dilraj1602/StudyTrack
+   git clone https://github.com/singhAyush18/progress_tracker
    cd StudyTrack
    ```
 
