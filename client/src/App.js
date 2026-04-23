@@ -87,7 +87,7 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/reset-password" element={<ResetPasswordPage />} />
           <Route path="/dashboard" element={<PrivateRoute><DashboardPage /></PrivateRoute>} />
-          <Route path="/add-task" element={<AddEditTaskPage />} />
+          <Route path="/add-task" element={<PrivateRoute><AddEditTaskPage /></PrivateRoute>} />
           <Route path="/leaderboard" element={<LeaderboardPage />} />
           <Route path="/tracking" element={<PrivateRoute><TrackingPage /></PrivateRoute>} />
           <Route path="/demo" element={<DemoPage />} />

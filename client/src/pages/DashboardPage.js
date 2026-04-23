@@ -1,5 +1,4 @@
-import React, { useState, useMemo, useRef, useState as useReactState } from 'react';
-import initialTasksData from '../utils/data';
+import React, { useState, useEffect, useMemo } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import './css/dashboard.css';
 import { getTasks, createTask, updateTask, deleteTask } from '../api';
@@ -62,14 +61,14 @@ const CalendarIcon = ({ onClick }) => (
 );
 
 const DashboardPage = () => {
-  const [tasks, setTasks] = useState(initialTasksData);
+  const [tasks, setTasks] = useState([]);
   const [filter, setFilter] = useState('All');
   const [search, setSearch] = useState('');
   const [sort, setSort] = useState('date_desc');
   const [editTaskId, setEditTaskId] = useState(null);
   const [editForm, setEditForm] = useState({ tasks: '', duration: '' });
   const [addForm, setAddForm] = useState({ tasks: '', duration: '', date: '' });
-  const [showDatePicker, setShowDatePicker] = useReactState(false);
+  const [showDatePicker, setShowDatePicker] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const tasksPerPage = 7;
   // Remove useRef and any focus logic
@@ -77,17 +76,16 @@ const DashboardPage = () => {
   const today = new Date();
   const todayStr = today.toISOString().slice(0, 10);
 
-  React.useEffect(() => {
+  useEffect(() => {
     async function fetchTasks() {
       try {
         const res = await getTasks();
-        setTasks(res.data);
+        setTasks(Array.isArray(res.data) ? res.data : []);
       } catch (err) {
         toast.error('Failed to load tasks');
       }
     }
     fetchTasks();
-    // console.log(tasks, 'tasks');
   }, []);
 
   const filteredTasks = useMemo(() => {
@@ -117,7 +115,7 @@ const DashboardPage = () => {
       }
       if (search.trim()) {
         arr = arr.filter(task =>
-          task.description.some(desc =>
+          task.tasks?.some(desc =>
             desc.toLowerCase().includes(search.toLowerCase())
           )
         );

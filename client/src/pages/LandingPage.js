@@ -179,7 +179,7 @@ const LandingPage = () => {
       {/* Footer */}
       <footer className="footer-large">
         &copy; {new Date().getFullYear()} StudyTrack &mdash; Track your study. Achieve more.<br/>
-        <span style={{ fontWeight: 700, fontSize: '1.08rem', letterSpacing: '1px', color: '#e0e7ff' }}>Made by Dilraj</span>
+        <span style={{ fontWeight: 700, fontSize: '1.08rem', letterSpacing: '1px', color: '#e0e7ff' }}>Made by Ayush</span>
       </footer>
     </div>
   );

@@ -29,6 +29,7 @@ export const verifyOtp = (data) => API.post('/auth/verify-otp', data);
 export const verifyResetCode = (data) => API.post('/auth/verify-reset-code', data);
 
 export const getTasks = () => API.get('/tasks');
+export const getLeaderboard = () => API.get('/tasks/leaderboard');
 export const getMonthlyStats = (year) => API.get(`/tasks/monthly-stats/${year}`);
 export const createTask = (data) => API.post('/tasks', data);
 export const updateTask = (id, data) => API.put(`/tasks/${id}`, data);
