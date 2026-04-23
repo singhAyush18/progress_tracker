@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
+const path = require('path');
 const connectDB = require('./config/db');
 
 const authRoutes = require('./routes/auth');
@@ -43,6 +44,14 @@ app.use('/api/v1', apiRouter);
 // Debug route to test if server is working
 app.get('/test', (req, res) => {
   res.json({ message: 'Server is running!' });
+});
+
+// Serve static files from React build
+app.use(express.static(path.join(__dirname, '../client/build')));
+
+// Fallback route for React SPA - serve index.html for all other routes
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
 // console.log('Available routes:');
